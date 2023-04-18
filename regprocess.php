@@ -15,9 +15,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-    $sql = "SELECT * FROM tblUser WHERE uEmail = '$email'";
-    $result = mysqli_query($conn, $sql);
-
         //Load Composer's autoloader
         require 'vendor/autoload.php';
 
@@ -57,9 +54,8 @@ use PHPMailer\PHPMailer\Exception;
     <b>Carpooling App</p>";
 
 
-                mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
-    
-                header("Location: check.php");
+    mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
+    header("Location: check.php");
             
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
