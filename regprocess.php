@@ -15,13 +15,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-
-if (isset($_POST['reg']) && $_POST['user_type'] == "Passenger" || $_POST['user_type'] == "Driver") {
     $sql = "SELECT * FROM tblUser WHERE uEmail = '$email'";
     $result = mysqli_query($conn, $sql);
 
-    //Check if credentials already taken
-    if (mysqli_num_rows($result) === 0) {
         //Load Composer's autoloader
         require 'vendor/autoload.php';
 
@@ -60,32 +56,12 @@ if (isset($_POST['reg']) && $_POST['user_type'] == "Passenger" || $_POST['user_t
     <p>With regards,</p>
     <b>Carpooling App</p>";
 
-            if (!$mail->send()) {
-                echo "<script>
-                    alert('Invalid Email!');
-                </script>";
-            
-            } else {
+
                 mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
     
-                echo "<script>
-                    alert('OTP code is sent to ' . $email)
-                    window.location.replace('check.php');
-                </script>";
-            }
+                header("Location: check.php");
+            
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-    } else { 
-        echo "<script>
-            window.alert('Credentials Already Taken!');
-            window.location.href = 'Register.php';
-        </script>";
-    }
-} else if ($_POST['user_type'] == "Admin") {
-    //mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel, uStatus) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '3', '0')");
-    header("Location: wait.php");
-}
-
-
 ?>
