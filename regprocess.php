@@ -60,29 +60,28 @@ if (isset($_POST['reg']) && $_POST['user_type'] == "Passenger" || $_POST['user_t
     <p>With regards,</p>
     <b>Carpooling App</p>";
 
-            if (!$mail->send()) { ?>
-                <script>
-                    alert("<?php echo "Invalid Email!" ?>");
-                </script>
-            <?php
+            if (!$mail->send()) {
+                echo "<script>
+                    alert('Invalid Email!');
+                </script>";
+            
             } else {
                 mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
-            ?>
-                <script>
-                    alert("<?php echo "OTP code is sent to " . $email ?>")
-                    window.location.replace("check.php");
-                </script>
-        <?php
+    
+                echo "<script>
+                    alert('OTP code is sent to ' . $email)
+                    window.location.replace('check.php');
+                </script>";
             }
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-    } else { ?>
-        <script>
+    } else { 
+        echo "<script>
             window.alert('Credentials Already Taken!');
             window.location.href = 'Register.php';
-        </script>
-<?php }
+        </script>";
+    }
 } else if ($_POST['user_type'] == "Admin") {
     //mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel, uStatus) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '3', '0')");
     header("Location: wait.php");
