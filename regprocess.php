@@ -16,7 +16,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
-// if (isset($_POST['reg']) && $_POST['user_type'] == "Passenger" || $_POST['user_type'] == "Driver") {
+if (isset($_POST['reg']) && $_POST['user_type'] == "Passenger" || $_POST['user_type'] == "Driver") {
     $sql = "SELECT * FROM tblUser WHERE uEmail = '$email'";
     $result = mysqli_query($conn, $sql);
 
@@ -83,10 +83,10 @@ use PHPMailer\PHPMailer\Exception;
             window.location.href = 'Register.php';
         </script>
 <?php }
-// } else if ($_POST['user_type'] == "Admin") {
-//     //mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel, uStatus) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '3', '0')");
-//     header("Location: wait.php");
-// }
+} else if ($_POST['user_type'] == "Admin") {
+    //mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel, uStatus) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '3', '0')");
+    header("Location: wait.php");
+}
 
 
 ?>
