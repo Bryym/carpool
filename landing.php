@@ -71,7 +71,6 @@ $conn = mysqli_connect($sname, $user, $password, $database);
                             }
 
                     ?>
-
                             <tr>
                                 <td> <?php echo $row['uFirstName'] ?> </td>
                                 <td> <?php echo $row['uLastName'] ?> </td>
@@ -80,10 +79,9 @@ $conn = mysqli_connect($sname, $user, $password, $database);
                                 <td> <?php echo $row['uDate_Reg'] ?> </td>
                             </tr>
 
-
                     <?php }
                     }
-                    $conn->close();
+                    //$conn->close();
                     ?>
                 </tbody>
             </table>
