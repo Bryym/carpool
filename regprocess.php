@@ -53,20 +53,13 @@ use PHPMailer\PHPMailer\Exception;
     <p>With regards,</p>
     <b>Carpooling App</p>";
 
-            if (!$mail->send()) { ?>
-                <script>
-                    alert("<?php echo "Invalid Email!" ?>");
-                </script>
-            <?php
-            } else {
                 mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
-            ?>
-                <script>
-                    alert("<?php echo "OTP code is sent to " . $email ?>")
-                    window.location.replace("check.php");
-                </script>
-        <?php
-            }
+            
+                echo "<script>
+                    alert(echo 'OTP code is sent to' . $email)
+                    window.location.replace('check.php');
+                </script>";
+            
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
