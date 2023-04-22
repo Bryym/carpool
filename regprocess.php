@@ -55,8 +55,7 @@ use PHPMailer\PHPMailer\Exception;
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-
-    mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
+    // mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
     header("Location: check.php");
 
 
