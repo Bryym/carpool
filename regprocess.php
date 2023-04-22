@@ -54,7 +54,7 @@ use PHPMailer\PHPMailer\Exception;
     <b>Carpooling App</p>";
     
     $mail->send();
-    //header("Location: adduser.php");
+    header("Location: adduser.php");
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
