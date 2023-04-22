@@ -53,7 +53,7 @@ use PHPMailer\PHPMailer\Exception;
     <p>With regards,</p>
     <b>Carpooling App</p>";
 
-    header("Location: adduser.php");
+    //header("Location: adduser.php");
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
