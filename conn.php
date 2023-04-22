@@ -8,6 +8,8 @@ $database = "u235219407_carpool_bryan";
 // $user= "root";
 // $password = "";
 // $database = "carpool";
-// $conn = mysqli_connect($sname, $user, $password, $database);
+
+
+$conn = mysqli_connect($sname, $user, $password, $database);
 ?>
 
