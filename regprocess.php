@@ -53,12 +53,8 @@ use PHPMailer\PHPMailer\Exception;
     <p>With regards,</p>
     <b>Carpooling App</p>";
 
-                mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
-            
-                echo "<script>
-                    alert(echo 'OTP code is sent to' . $email)
-                    window.location.replace('check.php');
-                </script>";
+        mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
+        header("Location: check.php");
             
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
