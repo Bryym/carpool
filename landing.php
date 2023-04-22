@@ -28,7 +28,6 @@ include "conn.php";
             background-color: white !important;
             border-radius: 5px;
         }
-
     </style>
 </head>
 
@@ -49,26 +48,32 @@ include "conn.php";
                 </thead>
                 <?php
                 $sql = "SELECT * FROM tblUser WHERE uStatus='1'";
-                $query = $conn->query($sql);
+                $result = $conn->query($sql);
 
-                while ($row = $query->fetch_array()) {
-                    // if ($row['uLevel'] == '1') {
-                    //     $type = "Passenger";
-                    // } else if ($row['uLevel'] == '2') {
-                    //     $type = "Driver";
-                    // } 
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        if ($row['uLevel'] == '1') {
+                            $type = "Passenger";
+                        } else if ($row['uLevel'] == '2') {
+                            $type = "Driver";
+                        }
 
                 ?>
-                    <tbody>
-                        <td> <?php echo $row['uFirstName'] ?> </td>
-                        <td> <?php echo $row['uLastName'] ?> </td>
-                        <td> <?php echo $row['uEmail'] ?> </td>
-                        <td> <?php echo $type ?> </td>
-                        <td> <?php echo $row['uDate_Reg'] ?> </td>
-                    </tbody>
+                        <tbody>
+                            <tr>
+                                <td> <?php echo $row['uFirstName'] ?> </td>
+                                <td> <?php echo $row['uLastName'] ?> </td>
+                                <td> <?php echo $row['uEmail'] ?> </td>
+                                <td> <?php echo $type ?> </td>
+                                <td> <?php echo $row['uDate_Reg'] ?> </td>
+                            </tr>
 
-                <?php } ?>
 
+                    <?php }
+                }
+                $conn->close();
+                    ?>
+                        </tbody>
             </table>
         </div>
 
