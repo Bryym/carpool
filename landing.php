@@ -1,6 +1,6 @@
 <?php
-$sname= "localhost";
-$user= "u235219407_bryan";
+$sname = "localhost";
+$user = "u235219407_bryan";
 $password = "Bryan@15";
 $database = "u235219407_carpool_bryan";
 
@@ -57,20 +57,21 @@ $conn = mysqli_connect($sname, $user, $password, $database);
                     <th> User Type </th>
                     <th> Date Registered </th>
                 </thead>
-                <?php
-                $sql = "SELECT * FROM tblUser WHERE uStatus='1'";
-                $result = $conn->query($sql);
+                <tbody>
+                    <?php
+                    $sql = "SELECT * FROM tblUser WHERE uStatus='1'";
+                    $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        if ($row['uLevel'] == '1') {
-                            $type = "Passenger";
-                        } else if ($row['uLevel'] == '2') {
-                            $type = "Driver";
-                        }
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            if ($row['uLevel'] == '1') {
+                                $type = "Passenger";
+                            } else if ($row['uLevel'] == '2') {
+                                $type = "Driver";
+                            }
 
-                ?>
-                        <tbody>
+                    ?>
+
                             <tr>
                                 <td> <?php echo $row['uFirstName'] ?> </td>
                                 <td> <?php echo $row['uLastName'] ?> </td>
@@ -81,13 +82,12 @@ $conn = mysqli_connect($sname, $user, $password, $database);
 
 
                     <?php }
-                }
-                $conn->close();
+                    }
+                    $conn->close();
                     ?>
-                        </tbody>
+                </tbody>
             </table>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
