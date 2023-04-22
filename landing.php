@@ -43,8 +43,8 @@ $conn = mysqli_connect($sname, $user, $password, $database);
 </head>
 
 <body>
-    <div class="table-inv">
-        <table class="table">
+    <div class="reg-table">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th> Name </th>
