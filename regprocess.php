@@ -1,13 +1,13 @@
 <!-- <link rel="stylesheet" href="style.css"> -->
 <?php
-include "conn.php";
-
 $fname = $_POST["firstname"];
 $lname = $_POST["lastname"];
 $email = $_POST["email"];
 $pass = $_POST["password"];
 
 $v_code = bin2hex(random_bytes(16));
+
+mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -52,11 +52,10 @@ use PHPMailer\PHPMailer\Exception;
     <br><br>
     <p>With regards,</p>
     <b>Carpooling App</p>";
+
+    header("Location: check.php");
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-    // mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
-    header("Location: check.php");
-
-
+    
 ?>
