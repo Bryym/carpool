@@ -52,13 +52,11 @@ include "conn.php";
                 $query = $conn->query($sql);
 
                 while ($row = $query->fetch_array()) {
-                    if ($row['uLevel'] == '1') {
-                        $type = "Passenger";
-                    } else if ($row['uLevel'] == '2') {
-                        $type = "Driver";
-                    } else if ($row['uLevel'] == '3') {
-                        $type = "Admin";
-                    }
+                    // if ($row['uLevel'] == '1') {
+                    //     $type = "Passenger";
+                    // } else if ($row['uLevel'] == '2') {
+                    //     $type = "Driver";
+                    // } 
 
                 ?>
                     <tbody>
