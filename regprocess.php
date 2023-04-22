@@ -4,13 +4,17 @@ $fname = $_POST["firstname"];
 $lname = $_POST["lastname"];
 $email = $_POST["email"];
 $pass = $_POST["password"];
+$level = $_POST["user_type"];
 
 $v_code = bin2hex(random_bytes(16));
 
-include "conn.php";
-mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
-$conn->close();
-
+session_start();
+$_SESSION['first'] = $fname;
+$_SESSION['last'] = $lname;
+$_SESSION['email'] = $email;
+$_SESSION['passw'] = $pass;
+$_SESSION['code'] = $v_code;
+$_SESSION['user_type'] = $level;
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -23,13 +27,6 @@ use PHPMailer\PHPMailer\Exception;
 
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
-
-
-        if ($_POST['user_type'] == "Passenger") {
-            $level = '1';
-        } else if ($_POST['user_type'] == "Driver") {
-            $level = '2';
-        }
 
         try {
             //Server settings
