@@ -43,49 +43,41 @@ $conn = mysqli_connect($sname, $user, $password, $database);
 </head>
 
 <body>
-    <div class="container">
-        <div class="title">
-            <h2>Registered Users</h2>
-        </div>
+    <div class="table-inv">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Name </th>
+                    <th> Brand </th>
+                    <th> Price </th>
+                    <th> Quantity </th>
+                    <th> Expiry </th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "SELECT * FROM tblUser WHERE uStatus='1'";
+                $result = $conn->query($sql);
 
-        <div class="reg-table">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <th> First Name </th>
-                    <th> Last Name </th>
-                    <th> Email </th>
-                    <th> User Type </th>
-                    <th> Date Registered </th>
-                </thead>
-                <tbody>
-                    <?php
-                    $sql = "SELECT * FROM tblUser WHERE uStatus='1'";
-                    $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                ?>
+                        <tr>
+                            <td><?php echo $row['uFirstName'] ?> </td>
+                            <td><?php echo $row['uLastName'] ?> </td>
+                            <td><?php echo $row['uEmail'] ?> </td>
+                            <td><?php echo "type" ?> </td>
+                            <td><?php echo $row['uDate_Reg'] ?> </td>
+                        </tr>
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            if ($row['uLevel'] == '1') {
-                                $type = "Passenger";
-                            } else if ($row['uLevel'] == '2') {
-                                $type = "Driver";
-                            }
-
-                    ?>
-                            <tr>
-                                <td> <?php echo $row['uFirstName'] ?> </td>
-                                <td> <?php echo $row['uLastName'] ?> </td>
-                                <td> <?php echo $row['uEmail'] ?> </td>
-                                <td> <?php echo $type ?> </td>
-                                <td> <?php echo $row['uDate_Reg'] ?> </td>
-                            </tr>
-
-                    <?php }
+                <?php
                     }
-                    //$conn->close();
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                }
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
