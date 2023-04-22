@@ -7,7 +7,10 @@ $pass = $_POST["password"];
 
 $v_code = bin2hex(random_bytes(16));
 
+include "conn.php";
 mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
+$conn->close();
+
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
