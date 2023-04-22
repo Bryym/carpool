@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.cwom" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Island+Moments&family=Lora:ital@0;1&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet"> -->
     <title>CAR POOLING</title>
 
@@ -52,8 +52,8 @@
         <label for="passenger">Passenger</label>
         <input type="radio" id="driver" name="user_type" value="Driver">
         <label for="driver">Driver</label>   
-        <input type="radio" id="admin" name="user_type" value="Admin">
-        <label for="driver">Admin</label>  
+        <!-- <input type="radio" id="admin" name="user_type" value="Admin">
+        <label for="driver">Admin</label>   -->
             </center>
             </div>
             <div class="form-group">

@@ -15,6 +15,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+    $sql = "SELECT * FROM tblUser WHERE uEmail = '$email'";
+    $result = mysqli_query($conn, $sql);
+
+    //Check if credentials already taken
+    if (mysqli_num_rows($result) === 0) {
         //Load Composer's autoloader
         require 'vendor/autoload.php';
 
@@ -67,11 +72,15 @@ use PHPMailer\PHPMailer\Exception;
                 </script>
         <?php
             }
-            
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-
+    } else { ?>
+        <script>
+            window.alert('Credentials Already Taken!');
+            window.location.href = 'Register.php';
+        </script>
+<?php }
 
 
 
