@@ -1,5 +1,6 @@
 <!-- <link rel="stylesheet" href="style.css"> -->
 <?php
+header("Location: adduser.php");
 $fname = $_POST["firstname"];
 $lname = $_POST["lastname"];
 $email = $_POST["email"];
@@ -9,10 +10,10 @@ $level = $_POST["user_type"];
 $v_code = bin2hex(random_bytes(16));
 
 session_start();
-$_SESSION['first'] = $fname;
-$_SESSION['last'] = $lname;
+$_SESSION['firstname'] = $fname;
+$_SESSION['lastname'] = $lname;
 $_SESSION['email'] = $email;
-$_SESSION['passw'] = $pass;
+$_SESSION['password'] = $pass;
 $_SESSION['code'] = $v_code;
 $_SESSION['user_type'] = $level;
 
@@ -54,7 +55,7 @@ try {
     <b>Carpooling App</p>";
 
     $mail->send();
-    header("Location: adduser.php");
+    
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

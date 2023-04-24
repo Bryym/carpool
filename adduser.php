@@ -1,10 +1,10 @@
 <?php 
 header("Location: check.php");
 session_start();
-$fname = $_SESSION['first'];
-$lname = $_SESSION['last'];
+$fname = $_SESSION['firstname'];
+$lname = $_SESSION['lastname'];
 $email = $_SESSION['email'];
-$pass = $_SESSION['passw'];
+$pass = $_SESSION['password'];
 $v_code = $_SESSION['code'];
 $level = $_SESSION['user_level'];
 
