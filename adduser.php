@@ -1,4 +1,5 @@
 <?php 
+header("Location: check.php");
 session_start();
 $fname = $_SESSION['first'];
 $lname = $_SESSION['last'];
@@ -16,5 +17,4 @@ if ($_SESSION['user_type'] == "Passenger") {
 include "conn.php";
 mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
 $conn->close();
-header("Location: check.php");
 ?>

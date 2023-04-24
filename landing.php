@@ -59,7 +59,7 @@ $conn = mysqli_connect($sname, $user, $password, $database);
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM tblUser WHERE uStatus='1'";
+                    $sql = "SELECT * FROM tblUser";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
