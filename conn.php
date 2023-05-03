@@ -9,6 +9,11 @@ $database = "u235219407_carpool_bryan";
 // $password = "";
 // $database = "carpool";
 
+// $sname= "carpool";
+// $user= "brycarpool";
+// $password = "9)+C%[yIm8NmQT85";
+// $database = "id20694670_carpool";
+
 
 $conn = mysqli_connect($sname, $user, $password, $database);
 ?>

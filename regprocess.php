@@ -1,11 +1,10 @@
 <!-- <link rel="stylesheet" href="style.css"> -->
 <?php
-header("Location: adduser.php");
+include "conn.php";
 $fname = $_POST["firstname"];
 $lname = $_POST["lastname"];
 $email = $_POST["email"];
 $pass = $_POST["password"];
-$level = $_POST["user_type"];
 
 $v_code = bin2hex(random_bytes(16));
 
@@ -29,6 +28,12 @@ require 'vendor/autoload.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
+//checking if user is taken
+$sql = "SELECT * FROM tblUser WHERE uEmail = '$email'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result)==0){
+    header("Location: adduser.php");
 try {
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                        //Enable verbose debug output
@@ -49,7 +54,7 @@ try {
     $mail->Subject = "Your verify code";
     $mail->Body    = "<h2><b> Carpool App </b></h2> <br> <p>Dear $fname, </p> <br> <h3>Good day, you only have one step to use the app. 
     Click the link below to finalize the Carpool App Registration<br></h3>
-    <p><a href='https://bryy.tech/confirmacc.php?email=$email&v_code=$v_code'>Verifying Email Address</a></p>
+    <p><a href='http://localhost/carpool/confirmacc.php?email=$email&v_code=$v_code'>Verifying Email Address</a></p> 
     <br><br>
     <p>With regards,</p>
     <b>Carpooling App</p>";
@@ -59,5 +64,13 @@ try {
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+}else {?>
+    <script>
+        window.alert('Credentials Already Taken!');
+        window.location.href='register.php';
+    </script>
+<?php
+}
 
+//https://bryy.tech/
 ?>

@@ -18,6 +18,14 @@
         body {
             padding-top: 150px;
         }
+
+        #license {
+            display: none;
+        }
+
+        #lid {
+            display: none;
+        }
     </style>
 </head>
 
@@ -26,6 +34,9 @@
         <form action="regprocess.php" method="post" class="form-signup">
             <h2>Sign Up!</h2>
             <p>Welcome new User!</p>
+            Have an account?
+            <a href="index.php">Sign in</a>
+            <hr>
             <div class="form-group mb-3">
                 <div class="row">
                     <div class="col-md-6">
@@ -41,21 +52,18 @@
             </div>
             <div class="form-group mb-3">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                <input type="checkbox" onclick="myFunction()"> Show Password
+                <input type="checkbox" onclick="showPass()"> Show Password
             </div>
             <div class="form-group mb-3">
                 <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
             </div>
             <div class="form-group mb-3">
-            <center>
-        <input type="radio" id="passenger" name="user_type" value="Passenger" required>
-        <label for="passenger">Passenger</label>
-        <input type="radio" id="driver" name="user_type" value="Driver">
-        <label for="driver">Driver</label>   
-        <!-- <input type="radio" id="admin" name="user_type" value="Admin">
-        <label for="driver">Admin</label>   -->
-            </center>
+                <label for="license" id="lid">Drivers License: </label>
+                <input type="file" class="form-control" id="license" name="license" id="license">
             </div>
+            <!-- <div class="form-group mb-3">
+                <input type="checkbox" id="driver" onclick="showl()" onblur="nonel()"> Sign Up as a Driver
+            </div> -->
             <div class="form-group">
                 <label>
                     <input type="checkbox" name="" required>
@@ -65,7 +73,7 @@
             <div class="d-grid gap-2">
                 <input type="submit" class="btn btn-secondary mt-2" name="reg" value="Submit">
             </div>
-        
+
         </form>
     </div>
 
@@ -86,13 +94,31 @@
         confirm_password.onkeyup = validatePassword;
 
         //for showing password
-        function myFunction() {
+        function showPass() {
             var x = document.getElementById("password");
             if (x.type === "password") {
                 x.type = "text";
             } else {
                 x.type = "password";
             }
+
+        }
+
+        //showing required field
+        function showl() {
+            var checkbox = document.getElementById('driver');
+            if (checkbox.checked == true) {
+                document.getElementById("license").style.display = "block";
+            document.getElementById("lid").style.display = "block";
+            }else {
+                document.getElementById("license").style.display = "none";
+            document.getElementById("lid").style.display = "none";
+            }
+
+        }
+
+        function nonel() {
+
         }
     </script>
 

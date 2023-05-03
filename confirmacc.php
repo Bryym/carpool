@@ -1,5 +1,5 @@
 <?php
-header("Location: landing.php");
+header("Location: index.php");
 
 include "conn.php";
 $email = $_GET['email'];

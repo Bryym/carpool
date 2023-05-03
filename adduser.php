@@ -1,5 +1,6 @@
 <?php 
 header("Location: check.php");
+include "conn.php";
 session_start();
 $fname = $_SESSION['firstname'];
 $lname = $_SESSION['lastname'];
@@ -8,13 +9,6 @@ $pass = $_SESSION['password'];
 $v_code = $_SESSION['code'];
 $level = $_SESSION['user_level'];
 
-if ($_SESSION['user_type'] == "Passenger") {
-    $level = '1';
-} else if ($_SESSION['user_type'] == "Driver") {
-    $level = '2';
-}
-
-include "conn.php";
-mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '$level')");
+mysqli_query($conn, "INSERT INTO tblUser (uFirstName, uLastName, uEmail, uPass, uVerification_code, uLevel) VALUES ('$fname', '$lname', '$email', '$pass', '$v_code', '1')");
 $conn->close();
-?>
+    
